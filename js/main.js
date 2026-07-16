@@ -1,49 +1,44 @@
 (function () {
-  /* ── Nav toggle ─────────────────────────────────────────── */
+  /* Navigation Toggle */
   var navToggle = document.querySelector(".nav-toggle");
   var body = document.body;
 
   if (navToggle) {
     var backdrop = document.getElementById("nav-backdrop");
 
-    function syncBackdrop() {
+    function syncBackdrop(isOpen) {
       if (!backdrop) return;
-      var open = body.classList.contains("nav-open");
-      backdrop.hidden = !open;
-      backdrop.setAttribute("aria-hidden", open ? "false" : "true");
+      backdrop.hidden = !isOpen;
+      backdrop.setAttribute("aria-hidden", isOpen ? "false" : "true");
     }
 
+    // Toggle menu
     navToggle.addEventListener("click", function () {
-      var open = body.classList.toggle("nav-open");
-      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-      syncBackdrop();
+      var isOpen = body.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      syncBackdrop(isOpen);
     });
 
-    document.querySelectorAll(".nav a, .btn--login").forEach(function (link) {
-      link.addEventListener("click", function () {
+    // Close menu with delay to allow animation to finish
+    function closeMenu() {
+      // 400ms matches our CSS transition duration (0.4s)
+      setTimeout(function() {
         body.classList.remove("nav-open");
         navToggle.setAttribute("aria-expanded", "false");
-        syncBackdrop();
-      });
+        syncBackdrop(false);
+      }, 300); 
+    }
+
+    // Apply to links and backdrop
+    document.querySelectorAll(".nav a, .btn--login").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
     });
 
     if (backdrop) {
-      backdrop.addEventListener("click", function () {
-        body.classList.remove("nav-open");
-        navToggle.setAttribute("aria-expanded", "false");
-        syncBackdrop();
-      });
+      backdrop.addEventListener("click", closeMenu);
     }
-
-    syncBackdrop();
   }
-
-  function encodeFormData(data) {
-    return Object.keys(data).map(function (key) {
-      return encodeURIComponent(key) + "=" + encodeURIComponent(data[key]);
-    }).join("&");
-  }
-
+  
   /* ── Persona card selection ──────────────────────────────── */
   var driverCard   = document.querySelector('[data-persona="driver"]');
   var businessCard = document.querySelector('[data-persona="business"]');

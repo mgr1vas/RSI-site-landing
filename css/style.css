@@ -1,3 +1,5 @@
+/* Road Safety Insights — "Signal Orange / Deep Blue" rebuild */
+
 :root {
   --navy: #0a2540;
   --navy-2: #123a5e;
@@ -1075,6 +1077,40 @@ textarea {
   white-space: nowrap;
 }
 
+/* 404 error page */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  background: var(--navy);
+  color: #eaf4ff;
+  padding: 20px;
+}
+
+.error-page h1 {
+  font-size: clamp(100px, 20vw, 200px);
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 10px;
+  text-shadow: 0 16px 34px rgba(255, 106, 31, 0.3);
+}
+
+.error-page h2 {
+  font-size: clamp(24px, 5vw, 40px);
+  margin-bottom: 16px;
+}
+
+.error-page p {
+  color: #a9c8e6;
+  margin-bottom: 40px;
+  max-width: 500px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
 /* ---------- footer ---------- */
 .foot {
   background: var(--navy);
@@ -1120,6 +1156,54 @@ textarea {
 
 .foot__meta a:hover {
   text-decoration: underline;
+}
+
+/* policy page*/
+.legal-page {
+  padding: 80px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-page h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+.legal-page .last-updated {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+.legal-page h2 {
+  font-size: 24px;
+  color: var(--navy-2);
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.legal-page p {
+  margin-bottom: 16px;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.legal-page a {
+  color: var(--orange);
+  text-decoration: underline;
+}
+
+.legal-page a:hover {
+  color: var(--orange-2);
+}
+
+.back-btn {
+  display: inline-block;
+  margin-bottom: 40px;
+  font-weight: 600;
+  text-decoration: none !important;
 }
 
 /* ---------- reveal ---------- */
